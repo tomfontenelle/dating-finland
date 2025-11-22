@@ -4,6 +4,8 @@
 
 Ce document liste toutes les variables identifiées dans le template qui peuvent être personnalisées pour générer des pages pour différentes villes.
 
+**Note importante:** Le template ne contient pas `<!DOCTYPE html>` car le code est destiné à être intégré dans un bloc HTML existant.
+
 ---
 
 ## 🏙️ VARIABLES PRINCIPALES
