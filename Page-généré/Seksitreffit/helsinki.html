@@ -1,0 +1,1078 @@
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seksitreffit Helsinki - Löydä Paikallisia Sinkkuja</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .helsinki-dating-container {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+        }
+
+        .helsinki-dating-container .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .helsinki-dating-container .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #475569 0%, #334155 100%);
+            color: white;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .helsinki-dating-container .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .helsinki-dating-container .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .helsinki-dating-container .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .helsinki-dating-container .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .helsinki-dating-container .user-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .helsinki-dating-container .nav-button {
+            width: 100%;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 32px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .helsinki-dating-container .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(244, 63, 94, 0.4);
+        }
+
+        .helsinki-dating-container .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .helsinki-dating-container .nav-item.active {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .helsinki-dating-container .nav-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .helsinki-dating-container .chat-section {
+            flex: 1;
+            margin-top: 24px;
+        }
+
+        .helsinki-dating-container .chat-title {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        .helsinki-dating-container .chat-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .helsinki-dating-container .chat-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .helsinki-dating-container .chat-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .helsinki-dating-container .chat-name {
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .helsinki-dating-container .message-count {
+            width: 24px;
+            height: 24px;
+            background: #f43f5e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .helsinki-dating-container .footer {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* Main Content */
+        .helsinki-dating-container .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .helsinki-dating-container .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .helsinki-dating-container .header h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .helsinki-dating-container .header p {
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        .helsinki-dating-container .search-box {
+            position: relative;
+            width: 320px;
+        }
+
+        .helsinki-dating-container .search-box input {
+            width: 100%;
+            padding: 12px 48px 12px 16px;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            outline: none;
+            font-size: 14px;
+        }
+
+        .helsinki-dating-container .search-box::after {
+            content: "🔍";
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+        }
+
+        .helsinki-dating-container .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .helsinki-dating-container .filter-btn {
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .helsinki-dating-container .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Profiles Grid */
+        .helsinki-dating-container .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .helsinki-dating-container .profile-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .helsinki-dating-container .profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .helsinki-dating-container .profile-image {
+            position: relative;
+            height: 320px;
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .helsinki-dating-container .online-indicator {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 16px;
+            height: 16px;
+            background: #10b981;
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .helsinki-dating-container .profile-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        }
+
+        .helsinki-dating-container .profile-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .helsinki-dating-container .profile-location {
+            color: rgba(255,255,255,0.8);
+            font-size: 14px;
+        }
+
+        .helsinki-dating-container .profile-actions {
+            display: flex;
+            gap: 12px;
+            padding: 16px;
+        }
+
+        .helsinki-dating-container .btn-secondary {
+            flex: 1;
+            padding: 12px 16px;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .helsinki-dating-container .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .helsinki-dating-container .btn-primary {
+            flex: 1;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .helsinki-dating-container .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(244, 63, 94, 0.4);
+        }
+
+        /* SEO Content */
+        .helsinki-dating-container .seo-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .helsinki-dating-container .content-section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .helsinki-dating-container .content-section h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+
+        .helsinki-dating-container .content-section p {
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .helsinki-dating-container .cta-section {
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            color: white;
+            text-align: center;
+            border-radius: 16px;
+            padding: 48px 32px;
+            box-shadow: 0 8px 25px rgba(244, 63, 94, 0.3);
+        }
+
+        .helsinki-dating-container .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .helsinki-dating-container .cta-section p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 32px;
+            font-size: 18px;
+        }
+
+        .helsinki-dating-container .cta-button {
+            background: white;
+            color: #f43f5e;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .helsinki-dating-container .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+        }
+
+        /* Popup */
+        .helsinki-dating-container .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .helsinki-dating-container .popup-overlay.show {
+            display: flex;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .helsinki-dating-container .popup {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            animation: scaleIn 0.3s ease-out;
+        }
+
+        .helsinki-dating-container .popup-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #64748b;
+        }
+
+        .helsinki-dating-container .popup-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .helsinki-dating-container .popup-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 32px;
+            color: white;
+        }
+
+        .helsinki-dating-container .popup h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .helsinki-dating-container .popup p {
+            color: #64748b;
+        }
+
+        .helsinki-dating-container .timer-section {
+            background: linear-gradient(135deg, #fef2f2 0%, #fce7e7 100%);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .helsinki-dating-container .timer {
+            font-size: 48px;
+            font-weight: bold;
+            color: #f43f5e;
+            margin-bottom: 8px;
+        }
+
+        .helsinki-dating-container .timer-label {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .helsinki-dating-container .features-list {
+            margin-bottom: 24px;
+        }
+
+        .helsinki-dating-container .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .helsinki-dating-container .feature-icon {
+            width: 32px;
+            height: 32px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .helsinki-dating-container .container {
+                flex-direction: column;
+            }
+
+            .helsinki-dating-container .sidebar {
+                width: 100%;
+                height: auto;
+            }
+
+            .helsinki-dating-container .main-content {
+                padding: 20px;
+            }
+
+            .helsinki-dating-container .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .helsinki-dating-container .search-box {
+                width: 100%;
+            }
+
+            .helsinki-dating-container .profiles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="helsinki-dating-container">
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">❤️</div>
+                <div class="logo-text">Treffit Helsinki</div>
+            </div>
+
+            <div class="user-profile">
+                <div class="user-avatar">👤</div>
+                <div>
+                    <div style="font-weight: 600;">Oma Profiili</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.6);">Näytä profiili</div>
+                </div>
+            </div>
+
+            <button class="nav-button" onclick="showHelsinkiPopup()">
+                Julkaise uutisvirta
+            </button>
+
+            <nav>
+                <div class="nav-item active" onclick="showHelsinkiPopup()">
+                    <span>🔍</span>
+                    <span>Selaa</span>
+                </div>
+                <div class="nav-item" onclick="showHelsinkiPopup()">
+                    <span>💬</span>
+                    <span>Viestit</span>
+                </div>
+                <div class="nav-item" onclick="showHelsinkiPopup()">
+                    <span>📰</span>
+                    <span>Uutisvirta</span>
+                </div>
+                <div class="nav-item" onclick="showHelsinkiPopup()">
+                    <span>⚙️</span>
+                    <span>Asetukset</span>
+                </div>
+            </nav>
+
+            <div class="chat-section">
+                <div class="chat-title">Aktiiviset keskustelut</div>
+                <div class="chat-item" onclick="showHelsinkiPopup()">
+                    <div class="chat-avatar">S</div>
+                    <div class="chat-name">Saara Virtanen</div>
+                    <div class="message-count">3</div>
+                </div>
+                <div class="chat-item" onclick="showHelsinkiPopup()">
+                    <div class="chat-avatar">M</div>
+                    <div class="chat-name">Minna Korhonen</div>
+                    <div class="message-count">2</div>
+                </div>
+                <div class="chat-item" onclick="showHelsinkiPopup()">
+                    <div class="chat-avatar">L</div>
+                    <div class="chat-name">Laura Mäkinen</div>
+                    <div class="message-count">5</div>
+                </div>
+            </div>
+
+            <div class="footer">
+                ©2025 Treffit Helsinki
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h1>Seksitreffit Helsingissä</h1>
+                    <p>Löydä paikallisia sinkkuja läheltäsi</p>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Hae nimellä tai kaupunginosalla...">
+                </div>
+            </header>
+
+            <div class="filters">
+                <button class="filter-btn" onclick="showHelsinkiPopup()">📍 Kaupunginosa</button>
+                <button class="filter-btn" onclick="showHelsinkiPopup()">👥 Ikä</button>
+                <button class="filter-btn" onclick="showHelsinkiPopup()">⚙️ Lisää suodattimia</button>
+            </div>
+
+            <div class="profiles-grid">
+                <!-- Profile 1 -->
+                <div class="profile-card" onclick="showHelsinkiPopup()">
+                    <div class="profile-image" style="background-image: url('https://www.seksitreffitsuomessa.fi/wp-content/uploads/2025/11/imgi_6_min-11rfoqt9nm70wuu.jpg'); background-size: cover; background-position: center;">
+                        <div class="online-indicator"></div>
+                        <div class="profile-info">
+                            <div class="profile-name">Saara, 32 v</div>
+                            <div class="profile-location">Kamppi • Keskusta, 0.5 km</div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-secondary" onclick="showHelsinkiPopup(); event.stopPropagation();">Näytä profiili</button>
+                        <button class="btn-primary" onclick="showHelsinkiPopup(); event.stopPropagation();">💬 Viesti</button>
+                    </div>
+                </div>
+
+                <!-- Profile 2 -->
+                <div class="profile-card" onclick="showHelsinkiPopup()">
+                    <div class="profile-image" style="background-image: url('https://www.seksitreffitsuomessa.fi/wp-content/uploads/2025/11/imgi_22_min-avatar_oio64n19ql361f0.jpg'); background-size: cover; background-position: center;">
+                        <div class="online-indicator"></div>
+                        <div class="profile-info">
+                            <div class="profile-name">Minna, 28 v</div>
+                            <div class="profile-location">Kallio • Sörnäinen, 1.2 km</div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-secondary" onclick="showHelsinkiPopup(); event.stopPropagation();">Näytä profiili</button>
+                        <button class="btn-primary" onclick="showHelsinkiPopup(); event.stopPropagation();">💬 Viesti</button>
+                    </div>
+                </div>
+
+                <!-- Profile 3 -->
+                <div class="profile-card" onclick="showHelsinkiPopup()">
+                    <div class="profile-image" style="background-image: url('https://www.seksitreffitsuomessa.fi/wp-content/uploads/2025/11/imgi_1_min-hrkp8hoquz.jpg'); background-size: cover; background-position: center;">
+                        <div class="online-indicator"></div>
+                        <div class="profile-info">
+                            <div class="profile-name">Laura, 35 v</div>
+                            <div class="profile-location">Töölö • Etu-Töölö, 0.9 km</div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-secondary" onclick="showHelsinkiPopup(); event.stopPropagation();">Näytä profiili</button>
+                        <button class="btn-primary" onclick="showHelsinkiPopup(); event.stopPropagation();">💬 Viesti</button>
+                    </div>
+                </div>
+
+                <!-- Profile 4 -->
+                <div class="profile-card" onclick="showHelsinkiPopup()">
+                    <div class="profile-image" style="background-image: url('https://www.seksitreffitsuomessa.fi/wp-content/uploads/2025/11/imgi_8_min-4e6su62e861gili.jpg'); background-size: cover; background-position: center;">
+                        <div class="online-indicator"></div>
+                        <div class="profile-info">
+                            <div class="profile-name">Katri, 30 v</div>
+                            <div class="profile-location">Punavuori • Ullanlinna, 1.4 km</div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-secondary" onclick="showHelsinkiPopup(); event.stopPropagation();">Näytä profiili</button>
+                        <button class="btn-primary" onclick="showHelsinkiPopup(); event.stopPropagation();">💬 Viesti</button>
+                    </div>
+                </div>
+
+                <!-- Profile 5 -->
+                <div class="profile-card" onclick="showHelsinkiPopup()">
+                    <div class="profile-image" style="background-image: url('https://www.seksitreffitsuomessa.fi/wp-content/uploads/2025/11/imgi_15_min-57jd0f86jy.jpg'); background-size: cover; background-position: center;">
+                        <div class="online-indicator"></div>
+                        <div class="profile-info">
+                            <div class="profile-name">Emilia, 29 v</div>
+                            <div class="profile-location">Katajanokka • Kruununhaka, 0.7 km</div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-secondary" onclick="showHelsinkiPopup(); event.stopPropagation();">Näytä profiili</button>
+                        <button class="btn-primary" onclick="showHelsinkiPopup(); event.stopPropagation();">💬 Viesti</button>
+                    </div>
+                </div>
+
+                <!-- Profile 6 -->
+                <div class="profile-card" onclick="showHelsinkiPopup()">
+                    <div class="profile-image" style="background-image: url('https://www.seksitreffitsuomessa.fi/wp-content/uploads/2025/11/imgi_19_min-zdep8c84pl.jpg'); background-size: cover; background-position: center;">
+                        <div class="online-indicator"></div>
+                        <div class="profile-info">
+                            <div class="profile-name">Henna, 27 v</div>
+                            <div class="profile-location">Arabianranta • Kumpula, 3.5 km</div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-secondary" onclick="showHelsinkiPopup(); event.stopPropagation();">Näytä profiili</button>
+                        <button class="btn-primary" onclick="showHelsinkiPopup(); event.stopPropagation();">💬 Viesti</button>
+                    </div>
+                </div>
+
+                <!-- Profile 7 -->
+                <div class="profile-card" onclick="showHelsinkiPopup()">
+                    <div class="profile-image" style="background-image: url('https://www.seksitreffitsuomessa.fi/wp-content/uploads/2025/08/seksitreffitsuomessa-06.png'); background-size: cover; background-position: center;">
+                        <div class="online-indicator"></div>
+                        <div class="profile-info">
+                            <div class="profile-name">Petra, 33 v</div>
+                            <div class="profile-location">Lauttasaari • Ruoholahti, 2.8 km</div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-secondary" onclick="showHelsinkiPopup(); event.stopPropagation();">Näytä profiili</button>
+                        <button class="btn-primary" onclick="showHelsinkiPopup(); event.stopPropagation();">💬 Viesti</button>
+                    </div>
+                </div>
+
+                <!-- Profile 8 -->
+                <div class="profile-card" onclick="showHelsinkiPopup()">
+                    <div class="profile-image" style="background-image: url('https://www.seksitreffitsuomessa.fi/wp-content/uploads/2025/08/seksitreffitsuomessa-05.png'); background-size: cover; background-position: center;">
+                        <div class="online-indicator"></div>
+                        <div class="profile-info">
+                            <div class="profile-name">Anni, 31 v</div>
+                            <div class="profile-location">Pasila • Vallila, 2.1 km</div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-secondary" onclick="showHelsinkiPopup(); event.stopPropagation();">Näytä profiili</button>
+                        <button class="btn-primary" onclick="showHelsinkiPopup(); event.stopPropagation();">💬 Viesti</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEO Content -->
+            <div class="seo-content">
+                <div class="content-section">
+                    <h2>Seksitreffit Helsingissä - Löydä Kumppani Suomen Pääkaupungista</h2>
+                    <p>
+                        Tervetuloa Helsingin johtavalle treffisivustolle sinkuille! Asutpa Kampissa, trendikkäässä Kalliossa, rannikon Katajanokalla tai vihreässä Töölössä, palvelumme yhdistää sinut paikallisiin sinkkuihin, jotka jakavat arkeasi Suomen pääkaupungissa.
+                    </p>
+                    <p>
+                        Helsingissä asuu yli 650 000 asukasta ja kaupunki tarjoaa vilkkaan kulttuurielämän ja monipuoliset kohtaamispaikat. Kauppatorilta Esplanadin puistoon, Suomenlinnan historiallisesta ympäristöstä Kalasataman moderniin kaupunkikeskukseen - löydä sinkkuja, jotka rakastavat tätä ainutlaatuista kaupunkia yhtä paljon kuin sinä.
+                    </p>
+                </div>
+
+                <!-- Neighborhoods Section -->
+                <div class="content-section" style="background: linear-gradient(135deg, #fef7f7 0%, #fdf2f8 100%);">
+                    <h2>Parhaat helsinkiläiset kaupunginosat tutustumiseen</h2>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 24px;">
+                        <div>
+                            <h3 style="color: #f43f5e; font-weight: 600; margin-bottom: 12px; font-size: 18px;">🏛️ Kamppi & Keskusta</h3>
+                            <p style="color: #64748b; line-height: 1.6; font-size: 14px;">
+                                Helsingin sydän tarjoaa lukemattomia baareita ja ravintoloita kuten Ateljee Bar ja Kappeli. Aleksanterinkatu ja Mannerheimintie luovat vilkkaan tunnelman ensitreffeille kahvin tai drinkin merkeissä.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 style="color: #f43f5e; font-weight: 600; margin-bottom: 12px; font-size: 18px;">🎨 Kallio & Sörnäinen</h3>
+                            <p style="color: #64748b; line-height: 1.6; font-size: 14px;">
+                                Boheemi Kallio houkuttelee nuorta ja luovaa väkeä. Vaasankadun baarit ja Hakaniemen kauppahalli tarjoavat rennon ympäristön tutustumiseen. Kesäisin Linnanmäki tuo lisää romantiikkaa.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 style="color: #f43f5e; font-weight: 600; margin-bottom: 12px; font-size: 18px;">🌳 Töölö & Punavuori</h3>
+                            <p style="color: #64748b; line-height: 1.6; font-size: 14px;">
+                                Viihtyisä Töölö Töölönlahden rannalla ja trendikäs Punavuori suunnittelukauppoineen houkuttelevat kulttuurista kiinnostuneita. Runeberginkadun kahvilat ja Hietalahden rantatori luovat tunnelmallisia kohtaamispaikkoja.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 style="color: #f43f5e; font-weight: 600; margin-bottom: 12px; font-size: 18px;">⚓ Katajanokka & Kruununhaka</h3>
+                            <p style="color: #64748b; line-height: 1.6; font-size: 14px;">
+                                Historialliset jugend-talot ja merellinen tunnelma tekevät näistä kaupunginosista romanttisia. Kauppatori ja Uspenskin katedraali tarjoavat upeat maisemat ja autenttiset helsinkiläiset ravintolat.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dating Ideas Section -->
+                <div class="content-section">
+                    <h2>Romanttisia treffiehdotuksia Helsingissä</h2>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px;">
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <span style="font-size: 24px; min-width: 32px;">⛴️</span>
+                            <div>
+                                <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">Suomenlinna-risteily</h4>
+                                <p style="color: #64748b; font-size: 14px; line-height: 1.5;">
+                                    Lyhyt lauttamatka Kauppatorilta vie UNESCOn maailmanperintökohteeseen. Kävely linnoituksen muureilla, museo ja kahvila Piparkakkutalossa tekevät unohtumattoman ensimmäisen treffin - kesällä tai talvella!
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <span style="font-size: 24px; min-width: 32px;">🌸</span>
+                            <div>
+                                <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">Kaisaniemen kasvitieteellinen puutarha</h4>
+                                <p style="color: #64748b; font-size: 14px; line-height: 1.5;">
+                                    Rauhallinen oaasi keskustassa! Trooppinen kasvihuone tarjoaa lämpöä ja eksoottista tunnelmaa myös talvella. Täydellinen paikka romanttiseen kävelyyn ja syvällisiin keskusteluihin.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <span style="font-size: 24px; min-width: 32px;">🍸</span>
+                            <div>
+                                <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">Ateljee Bar auringonlaskun aikaan</h4>
+                                <p style="color: #64748b; font-size: 14px; line-height: 1.5;">
+                                    Kattobaari Torintalon päällä tarjoaa 360° näkymän yli Helsingin. Cocktailit, hämyinen tunnelma ja panoraamanäkymät luovat romanttisen ympäristön tutustumiseen. Varaa paikka ikkunan vierestä!
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <span style="font-size: 24px; min-width: 32px;">🎭</span>
+                            <div>
+                                <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">Kansallisooppera & Töölönlahti</h4>
+                                <p style="color: #64748b; font-size: 14px; line-height: 1.5;">
+                                    Kulttuurielämys oopperassa tai baletissa, jota seuraa kävelylenkki Töölönlahden ympäri. Kesällä piknik rantaniityllä, talvella glögi ja pipareita Ravintola Kellossa.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <span style="font-size: 24px; min-width: 32px;">🛍️</span>
+                            <div>
+                                <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">Vanha kauppahalli</h4>
+                                <p style="color: #64748b; line-height: 1.5; font-size: 14px;">
+                                    Vuonna 1889 rakennettu jugend-kauppahalli rannalla. Maista herkkuja eri kojuilta, jaa lautanen herkullisia makuja ja nauti merellisestä tunnelmasta. Autenttinen helsinkiläinen kokemus!
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <span style="font-size: 24px; min-width: 32px;">🏛️</span>
+                            <div>
+                                <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">Ateneum & Esplanadi</h4>
+                                <p style="color: #64748b; font-size: 14px; line-height: 1.5;">
+                                    Taidemuseo Ateneumissa herättää keskustelua, jonka jälkeen kävelette Esplanadin puistoon. Kesäillat tuovat katusoittajia ja elävää tunnelmaa, talvella valot luovat lumoa.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Local Stats Section -->
+                <div class="content-section" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+                    <h2>Miksi valita meidän treffisivustomme Helsingissä?</h2>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 24px;">
+                        <div style="text-align: center; padding: 20px;">
+                            <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 28px; color: white;">
+                                📍
+                            </div>
+                            <h3 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">100% Paikallista Helsinkiä</h3>
+                            <p style="color: #64748b; font-size: 14px;">
+                                Kaikki jäsenet asuvat pääkaupunkiseudulla: Kampista Kallioon, Lauttasaaresta Vuosaareen. Aitoja lähitreffejä!
+                            </p>
+                        </div>
+
+                        <div style="text-align: center; padding: 20px;">
+                            <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 28px; color: white;">
+                                ✅
+                            </div>
+                            <h3 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">Aidot Profiilit</h3>
+                            <p style="color: #64748b; font-size: 14px;">
+                                Tiimimme tarkistaa jokaisen rekisteröitymisen varmistaakseen, että tapaat aitoja helsinkiläisiä sinkkuja - ei valeprofiileja!
+                            </p>
+                        </div>
+
+                        <div style="text-align: center; padding: 20px;">
+                            <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 28px; color: white;">
+                                💬
+                            </div>
+                            <h3 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">Välitön Viestintä</h3>
+                            <p style="color: #64748b; font-size: 14px;">
+                                Järjestä nopeasti treffisi Kauppatorille tai Linnanmäelle reaaliaikaisen viestintämme avulla. Aloita keskustelu tänään!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Local Events Section -->
+                <div class="content-section">
+                    <h2>Helsingin tapahtumat täydellisille treffeille</h2>
+                    <p style="color: #64748b; margin-bottom: 24px;">
+                        Helsinki tarjoaa ympäri vuoden tapahtumia, jotka helpottavat luonnollista tutustumista samanhenkisten sinkkujen kanssa.
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                        <div style="border-left: 4px solid #f43f5e; padding-left: 16px;">
+                            <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">🎵 Flow Festival</h4>
+                            <p style="color: #64748b; font-size: 14px;">
+                                Elokuussa: Suomen suurin kaupunkifestivaali Suvilahdessa. Kansainväliset artistit, monipuolinen musiikki ja nuorekas tunnelma luovat täydelliset puitteet uusille kohtaamisille.
+                            </p>
+                        </div>
+
+                        <div style="border-left: 4px solid #f43f5e; padding-left: 16px;">
+                            <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">🍽️ Ravintolapäivä</h4>
+                            <p style="color: #64748b; font-size: 14px;">
+                                Toukokuussa: Yksi päivä täynnä pop-up ravintoloita ympäri kaupunkia. Jaa uniikkeja makuelämyksiä jonkun erityisen kanssa ja löydä piilotettuja helmiä yhdessä!
+                            </p>
+                        </div>
+
+                        <div style="border-left: 4px solid #f43f5e; padding-left: 16px;">
+                            <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">❄️ Lux Helsinki</h4>
+                            <p style="color: #64748b; font-size: 14px;">
+                                Tammikuussa: Valo- ja taidetapahtuma keskustassa. Romanttinen kävelykierros valoteosten keskellä luo taikaa pimeään talvi-iltaan. Lämmittele sen jälkeen kahvilla!
+                            </p>
+                        </div>
+
+                        <div style="border-left: 4px solid #f43f5e; padding-left: 16px;">
+                            <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 8px;">🏃‍♀️ Helsinki City Marathon</h4>
+                            <p style="color: #64748b; font-size: 14px;">
+                                Elokuussa: Täysi- tai puolimaraton kaupungin halki. Liity aktiivisten helsinkiläisten yhteisöön - loistava tapa tavata motivoituneita ja terveellisestä elämäntavasta kiinnostuneita sinkkuja!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h2>Valmis löytämään rakkauden Helsingissä?</h2>
+                    <p>
+                        Liity nyt satojen helsinkiläisten sinkkujen joukkoon, jotka ovat jo löytäneet sielunkumppaninsa palvelumme kautta. Olitpa sitten Esplanadin kävelystä tai Kallion yöelämästä kiinnostunut, löydät jonkun joka jakaa makusi!
+                    </p>
+                    <button class="cta-button" onclick="showHelsinkiPopup()">
+                        Luo ilmainen profiili nyt
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Registration Popup -->
+    <div id="helsinki-popup" class="popup-overlay">
+        <div class="popup">
+            <button class="popup-close" onclick="closeHelsinkiPopup()">×</button>
+
+            <div class="popup-header">
+                <div class="popup-icon">❤️</div>
+                <h2>Sisältö Varattu Jäsenille</h2>
+                <p>Päästäksesi sisältöön, rekisteröidy ilmaiseksi</p>
+            </div>
+
+            <div class="timer-section">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 12px;">
+                    <span style="font-size: 24px;">⏰</span>
+                    <span style="font-weight: 600; color: #64748b;">Rajoitettu tarjous</span>
+                </div>
+                <div id="helsinki-timer" class="timer">10:00</div>
+                <div class="timer-label">Ilmainen rekisteröityminen käytettävissä vielä</div>
+            </div>
+
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span style="color: #64748b; font-size: 14px;">Rajaton pääsy profiileihin</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span style="color: #64748b; font-size: 14px;">Välitön viestintä</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <span style="color: #64748b; font-size: 14px;">Varmennetut ja turvalliset profiilit</span>
+                </div>
+            </div>
+
+            <a href="https://www.seksitreffitsuomessa.fi/ilmoittautuminen" style="display: block; width: 100%; padding: 16px; background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); color: white; text-decoration: none; border-radius: 25px; font-weight: bold; text-align: center; font-size: 18px; transition: all 0.3s;">
+                Rekisteröidy ilmaiseksi
+            </a>
+
+            <p style="font-size: 12px; color: #94a3b8; text-align: center; margin-top: 16px;">
+                100% ilmainen rekisteröityminen • Ei luottokorttia tarvita
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    let helsinkiTimeLeft = 600; // 10 minutes
+    let helsinkiTimerInterval;
+
+    function formatHelsinkiTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return mins + ':' + (secs < 10 ? '0' : '') + secs;
+    }
+
+    function updateHelsinkiTimer() {
+        const timerElement = document.getElementById('helsinki-timer');
+        if (timerElement) {
+            timerElement.textContent = formatHelsinkiTime(helsinkiTimeLeft);
+        }
+        if (helsinkiTimeLeft > 0) {
+            helsinkiTimeLeft--;
+        }
+    }
+
+    function showHelsinkiPopup() {
+        document.getElementById('helsinki-popup').classList.add('show');
+        if (!helsinkiTimerInterval) {
+            helsinkiTimerInterval = setInterval(updateHelsinkiTimer, 1000);
+        }
+    }
+
+    function closeHelsinkiPopup() {
+        document.getElementById('helsinki-popup').classList.remove('show');
+    }
+
+    // Start timer immediately
+    helsinkiTimerInterval = setInterval(updateHelsinkiTimer, 1000);
+
+    // Close popup when clicking outside
+    document.getElementById('helsinki-popup').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeHelsinkiPopup();
+        }
+    });
+</script>
+
+</body>
+</html>
